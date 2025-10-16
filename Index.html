@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+/* === Tailgate Stats (Texas Example — Full CSS + HTML) === */
+
+/* === Main container === */
+.tailgate-stats {
+  background: linear-gradient(90deg, #fff6cc 0%, #fffdf5 100%);
+  border-left: 4px solid #F2C23A;
+  border-radius: 10px;
+  padding: 10px 18px 16px;
+  margin: 20px auto;
+  width: calc(100% - 40px);
+  max-width: 850px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: nowrap;
+  position: relative;
+  z-index: 2;
+  clear: both;
+  isolation: isolate;
+}
+
+/* === Header (Desktop version) === */
+.main-header {
+  flex: 0 0 auto;
+  text-align: center;
+  min-width: 170px;
+  padding: 2px 6px;
+  border-radius: 8px;
+  transition: all 0.35s ease;
+}
+
+.main-header h3 {
+  margin: 0;
+  font-weight: 800;
+  color: #3b2f00;
+  transition: color 0.3s ease;
+}
+
+.main-header .state {
+  font-size: 17px;
+  font-weight: 900;
+  color: #3b2f00;
+}
+
+.main-header .label {
+  font-size: 14px;
+  font-weight: 700;
+  color: #4b3b00;
+  line-height: 1.2;
+}
+
+.main-header strong {
+  font-size: 25px;
+  font-weight: 900;
+  color: #000;
+  display: inline-block;
+  margin-top: 4px;
+  padding: 4px 10px;
+  border-radius: 6px;
+  position: relative;
+  transition: all 0.35s ease;
+}
+
+/* underline for score */
+.main-header strong::after {
+  content: "";
+  display: block;
+  width: 32px;
+  height: 3px;
+  background: #F2C23A;
+  margin: 5px auto 0;
+  border-radius: 2px;
+  opacity: 0.9;
+}
+
+/* Hover highlight */
+.main-header:hover .state,
+.main-header:hover .label {
+  color: #F2C23A;
+}
+.main-header:hover strong {
+  background: #F2C23A;
+  color: #111;
+  transform: scale(1.05);
+}
+
+/* === Scrollable stats === */
+.secondary-scroll {
+  display: flex;
+  overflow-x: auto;
+  gap: 16px;
+  padding-bottom: 14px;
+  margin-top: 8px;
+  scrollbar-width: thin;
+  scrollbar-color: #F2C23A #fff8e0;
+  -webkit-overflow-scrolling: touch;
+  flex: 1;
+}
+
+.secondary-scroll::-webkit-scrollbar {
+  height: 4px;
+}
+.secondary-scroll::-webkit-scrollbar-thumb {
+  background: linear-gradient(90deg, #F2C23A, #ffe88a);
+  border-radius: 10px;
+}
+.secondary-scroll::-webkit-scrollbar-track {
+  background: #fff8e0;
+}
+
+/* === Stat boxes === */
+.stat-box {
+  flex: 0 0 auto;
+  text-align: center;
+  min-width: 120px;
+  transition: all 0.3s ease;
+  border-radius: 8px;
+  padding: 3px 0;
+}
+.stat-box:hover {
+  transform: scale(1.06);
+  background: rgba(255, 242, 150, 0.35);
+  box-shadow: 0 3px 8px rgba(242, 194, 58, 0.25);
+}
+.stat-box h4 {
+  font-size: 13.5px;
+  color: #4b3b00;
+  margin: 0;
+  font-weight: 700;
+}
+.stat-box h4 span {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  color: #7a6b2a;
+  margin-top: 2px;
+}
+.stat-box strong {
+  font-size: 18px;
+  color: #000;
+  font-weight: 800;
+  display: block;
+  margin-top: 4px;
+  position: relative;
+}
+.stat-box strong::after {
+  content: "";
+  display: block;
+  width: 30px;
+  height: 3px;
+  background: #F2C23A;
+  margin: 5px auto 0;
+  border-radius: 2px;
+  opacity: 0.9;
+}
+
+/* === Mobile layout === */
+.mobile-only { display: none; }
+
+@media (max-width: 768px) {
+  .desktop-only { display: none; }
+  .mobile-only {
+    display: block;
+    font-size: 15px;
+    font-weight: 800;
+    text-align: center;
+    color: #3b2f00;
+  }
+  .mobile-only strong {
+    display: inline;
+    font-size: 20px;
+    font-weight: 900;
+    margin-left: 4px;
+    padding: 2px 6px;
+    background: none;
+  }
+  .mobile-only strong::after { display: none; }
+
+  .tailgate-stats {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 12px 14px 16px;
+    gap: 8px;
+  }
+  .secondary-scroll {
+    width: 100%;
+    justify-content: flex-start;
+    padding: 6px 2px 14px;
+    gap: 12px;
+  }
+  .stat-box {
+    min-width: 120px;
+    padding: 4px 2px;
+  }
+  .stat-box h4 { font-size: 13px; }
+  .stat-box strong { font-size: 17px; }
+}
+
+/* WordPress fix */
+body.wp-admin .tailgate-stats {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow: visible !important;
+  clear: both !important;
+  margin: 18px 0 !important;
+}
+
+/* Hover highlight for mobile text */
+.main-header:hover .mobile-only,
+.main-header:active .mobile-only {
+  color: #F2C23A;
+  transition: color 0.3s ease;
+}
+</style>
+</head>
+<body>
+<div class="tailgate-stats">
+  <div class="main-header highlightable">
+    <!-- Desktop layout -->
+    <h3 class="desktop-only">
+      <span class="state">#1 Texas</span><br>
+      <span class="label">Tailgating Score (/100)</span><br>
+      <strong>78.66</strong>
+    </h3>
+
+    <!-- Mobile layout -->
+    <h3 class="mobile-only">
+      <span>Texas Tailgating Score:</span>
+      <strong>78.66</strong>
+    </h3>
+  </div>
+
+  <div class="secondary-scroll">
+    <div class="stat-box">
+      <h4>💵 Tailgating Cost<br><span>(Beer, BBQ Fuel, Meat, Parking)</span></h4>
+      <strong>$45.52</strong>
+    </div>
+    <div class="stat-box">
+      <h4>🅿️ Parking Spaces<br><span>(Est.)</span></h4>
+      <strong>97,241</strong>
+    </div>
+    <div class="stat-box">
+      <h4>🏈 CFB & NFL Teams<br><span>(Count)</span></h4>
+      <strong>15</strong>
+    </div>
+    <div class="stat-box">
+      <h4>💬 Fan Sentiment<br><span>(Positive)</span></h4>
+      <strong>59.70%</strong>
+    </div>
+    <div class="stat-box">
+      <h4>🔍 Fan Interest<br><span>(Monthly Searches)</span></h4>
+      <strong>7,470</strong>
+    </div>
+  </div>
+</div>
+</body>
+</html>
